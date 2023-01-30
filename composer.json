@@ -1,0 +1,42 @@
+{
+  "require-dev": {
+    "phpunit/phpunit": "^9.5",
+    "mockery/mockery": "^1.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "BurritoFactory\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "BurritoFactory\\": "tests/"
+    }
+  },
+  "require": {
+    "php": "^8.0",
+    "akei/kulinarisk": "1.0"
+  },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "./libs/Kulinarisk_V1.0",
+      "canonical": false,
+      "options": {
+        "versions": {
+          "akei/kulinarisk": "1.0"
+        }
+      }
+    },
+    {
+      "type": "path",
+      "url": "./libs/Kulinarisk_V2.0",
+      "canonical": false,
+      "options": {
+        "versions": {
+          "akei/kulinarisk": "2.0"
+        }
+      }
+    }
+  ]
+}

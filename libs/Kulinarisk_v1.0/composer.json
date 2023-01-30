@@ -1,0 +1,17 @@
+{
+  "name": "akei/kulinarisk",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "version": "1.0",
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "AKEI\\": "."
+    },
+    "files": [
+      "sleep.php"
+    ]
+  }
+}
