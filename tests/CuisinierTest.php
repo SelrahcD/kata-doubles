@@ -4,14 +4,20 @@ declare(strict_types=1);
 
 namespace BurritoFactory;
 
+use AKEI\Kulinarisk;
 use BurritoFactory\Ingredients\Pain;
 use BurritoFactory\Ingredients\PainGrillé;
 use BurritoFactory\Ingredients\Poivron;
 use BurritoFactory\Ingredients\PoivronFondant;
+use Mockery;
 use PHPUnit\Framework\TestCase;
 
 class CuisinierTest extends TestCase
 {
+    public function tearDown(): void
+    {
+        Mockery::close();
+    }
 
     /**
      * @test
@@ -20,7 +26,9 @@ class CuisinierTest extends TestCase
     {
         $poivron = new Poivron();
 
-        $kulinarisk = new \AKEI\Kulinarisk();
+        $kulinarisk = Mockery::mock(Kulinarisk::class);
+
+        $kulinarisk->allows()->laga($poivron, 25)->andReturns(new PoivronFondant());
 
         $cuisiner = new Cuisinier($kulinarisk);
 
@@ -36,7 +44,9 @@ class CuisinierTest extends TestCase
     {
         $pain = new Pain();
 
-        $kulinarisk = new \AKEI\Kulinarisk();
+        $kulinarisk = Mockery::mock(Kulinarisk::class);
+
+        $kulinarisk->allows()->laga($pain, 2)->andReturns(new PainGrillé());
 
         $cuisiner = new Cuisinier($kulinarisk);
 
