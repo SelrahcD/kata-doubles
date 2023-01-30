@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace AKEI;
 
-use BurritoFactory\Ingredients\Mozzarella;
-use BurritoFactory\Ingredients\Pain;
-use BurritoFactory\Ingredients\PainBrulé;
-use BurritoFactory\Ingredients\PainGrillé;
-use BurritoFactory\Ingredients\Poivron;
-use BurritoFactory\Ingredients\PoivronBrulé;
-use BurritoFactory\Ingredients\PoivronFondant;
-use BurritoFactory\Ingredients\PoivronJusteChaud;
-use BurritoFactory\Ingredients\Tomates;
+use BurritoFactory\Mozzarella;
+use BurritoFactory\Pain;
+use BurritoFactory\PainBrulé;
+use BurritoFactory\PainGrillé;
+use BurritoFactory\Poivron;
+use BurritoFactory\PoivronBrulé;
+use BurritoFactory\PoivronFondant;
+use BurritoFactory\PoivronJusteChaud;
+use BurritoFactory\Tomates;
 
 class Kulinarisk
 {
@@ -20,7 +20,8 @@ class Kulinarisk
     {
         $durationInSeconds = $duration * 60;
 
-        sleep($durationInSeconds);
+        sleep(2);
+//        sleep($durationInSeconds);
 
         return $this->heat($dish, $durationInSeconds);
     }
@@ -33,13 +34,17 @@ class Kulinarisk
 
         foreach ($dishMapping as $mappedDuration => $mappedDish) {
             if ($durationInSeconds >= $mappedDuration) {
-                return $dish;
+                return $mappedDish;
             }
         }
 
         return $dish;
     }
 
+    private function doNothing($dish, int $durationInSeconds)
+    {
+        return $dish;
+    }
 
     public function mapping(): array
     {

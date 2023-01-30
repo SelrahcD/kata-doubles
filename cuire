@@ -1,0 +1,48 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use AKEI\Kulinarisk;
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$nomPlat = $argv[1];
+$duréeEnMinutes = intval($argv[2]);
+
+$kulinarisk = new Kulinarisk();
+
+$plat = plat($nomPlat);
+
+$platCuit = $plat->cuireAvec($kulinarisk, $duréeEnMinutes);
+
+$nomDuPlatCuit = formateNomDuPlat($platCuit);
+
+$message = <<<MESSAGE
+⏲  Ça fait $duréeEnMinutes minutes ⏲ 
+Il y a du $nomDuPlatCuit dans le four !
+
+MESSAGE;
+
+
+echo $message;
+
+
+function plat(mixed $nomPlat): mixed
+{
+    $nomPlatAvecNamespace = sprintf('\BurritoFactory\%s', $nomPlat);
+
+    $plat = new $nomPlatAvecNamespace();
+    return $plat;
+}
+
+function formateNomDuPlat(object $platCuit): string
+{
+    $nomDuPlatExploded = explode('\\', get_class($platCuit));
+
+    $nomDuPlatSansNamespace = array_pop($nomDuPlatExploded);
+
+    return trim(implode(" ", preg_split('/(?=[A-Z])/', $nomDuPlatSansNamespace)));
+}
+
+

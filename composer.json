@@ -37,6 +37,16 @@
           "akei/kulinarisk": "2.0"
         }
       }
+    },
+    {
+      "type": "path",
+      "url": "./libs/Kulinarisk_V2.0.1",
+      "canonical": false,
+      "options": {
+        "versions": {
+          "akei/kulinarisk": "2.0.1"
+        }
+      }
     }
   ]
 }
